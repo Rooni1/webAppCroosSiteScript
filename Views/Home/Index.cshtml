@@ -1,58 +1,33 @@
-﻿@model webAppCroosSS.Models.Comments
+﻿@model IEnumerable<webAppCroosSS.Models.Comments>
 @{
     ViewData["Title"] = "Home Page";
 }
-@*<h1>Create</h1>
-
-@using (Html.BeginForm("CreateComment", "Home", FormMethod.Post))
-{
-    @Html.ValidationSummary(true)
-    <fieldset>
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Name)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Name)
-            @Html.ValidationMessageFor(model => model.Name)
-        </div>
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Comment)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Comment)
-            @Html.ValidationMessageFor(model => model.Comment)
-        </div>
-        <b>
-            <input type="submit" value="Create" class="btn btn-primary" />
-        </b>
-    </fieldset>
-}
-*@
-@*<div class="row">
-    <div class="col-md-4">
-        <form asp-action="CreateComment" method="post">
-            @Html.ValidationSummary(true)
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-                <span class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Comment" class="control-label"></label>
-                <textarea asp-for="Comment" class="form-control"></textarea>
-                <span class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>
-*@
-
-@*
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>*@
-
+<div style="font-family:Arial"></div>
+<p>
+    @Html.ActionLink("Create New","Create")
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Comment)
+        </th>
+    </tr>
+    @foreach(var items in Model){
+        <tr>
+            <td>
+                @Html.DisplayNameFor(modelItem => items.Name)
+            </td>
+            <td>
+                @Html.Raw(items.Comment)
+            </td>
+            <td>
+                @Html.ActionLink("Edit" ,"Edit", new {id = items.Id})|
+                @Html.ActionLink("Details" ,"Details", new {id = items.Id})|
+                @Html.ActionLink("Delete" ,"Delete", new {id = items.Id})|
+            </td>
+        </tr>
+    }
+</table>

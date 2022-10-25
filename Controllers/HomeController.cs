@@ -7,6 +7,7 @@ using webAppCroosSS.Data;
 using webAppCroosSS.Models;
 using ActionResult = Microsoft.AspNetCore.Mvc.ActionResult;
 using Controller = Microsoft.AspNetCore.Mvc.Controller;
+using HttpGetAttribute = Microsoft.AspNetCore.Mvc.HttpGetAttribute;
 using HttpPostAttribute = Microsoft.AspNetCore.Mvc.HttpPostAttribute;
 
 namespace webAppCroosSS.Controllers
@@ -24,12 +25,19 @@ namespace webAppCroosSS.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            Comments _comments = new Comments();
+         var testList = _commentBDContext.comment.ToList();
+           
+          
+
+            return View(testList);
         }
         public ActionResult Create()
         {
             return View();
         }
+        [HttpGet]
+    
 
         [HttpPost]
         [ValidateInput(false)]
@@ -39,8 +47,8 @@ namespace webAppCroosSS.Controllers
             sBuilder.Append(HttpUtility.HtmlEncode(comment1.Comment));
             sBuilder.Replace("&lt;b&gt;","<b>");
             sBuilder.Replace("&lt;/b&gt;", "</b>");
-            sBuilder.Replace("&lt;u&gt;", "</b>");
-            sBuilder.Replace("&lt;/u&gt;", "</b>");
+            sBuilder.Replace("&lt;u&gt;", "<u>");
+            sBuilder.Replace("&lt;/u&gt;", "</u>");
             comment1.Comment = sBuilder.ToString();
             string strEncodedName = HttpUtility.HtmlEncode(comment1.Name);
             comment1.Name = strEncodedName;

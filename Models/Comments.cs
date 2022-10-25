@@ -9,5 +9,7 @@ namespace webAppCroosSS.Models
         public string Name { get; set; }
         [AllowHtml]
         public string Comment { get; set; }
+        //public List<Comments> commentList = new List<Comments>();
+
     }
 }
