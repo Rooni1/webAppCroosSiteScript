@@ -25,7 +25,7 @@ namespace webAppCroosSS.Controllers
 
         public IActionResult Index()
         {
-            Comments _comments = new Comments();
+            //Comments _comments = new Comments();
          var testList = _commentBDContext.comment.ToList();
            
           
@@ -36,8 +36,7 @@ namespace webAppCroosSS.Controllers
         {
             return View();
         }
-        [HttpGet]
-    
+          
 
         [HttpPost]
         [ValidateInput(false)]
@@ -45,7 +44,7 @@ namespace webAppCroosSS.Controllers
         {
             StringBuilder sBuilder = new StringBuilder();
             sBuilder.Append(HttpUtility.HtmlEncode(comment1.Comment));
-            sBuilder.Replace("&lt;b&gt;","<b>");
+            sBuilder.Replace("&lt;b&gt;", "<b>");
             sBuilder.Replace("&lt;/b&gt;", "</b>");
             sBuilder.Replace("&lt;u&gt;", "<u>");
             sBuilder.Replace("&lt;/u&gt;", "</u>");
